@@ -1,0 +1,23 @@
+{# {% set showcase_image = page.media.images|first.grayscale().contrast(20).brightness(-125).colorize(-135,122,222) %} #}
+{# {% set showcase_image = page.media.images|first.grayscale().contrast(20).brightness(-125).colorize(-135,122,222) %} #}
+{# {% set showcase_image = page.media['sunset.jpg'].brightness(-50) %} #}
+{% set showcase_image = page.media['stool.jpg'].brightness(-50) %}
+{% if showcase_image %}
+	<div class="modular-row showcase{% if page == page.parent.collection.first %} flush-top{% endif %}" style="background-image: url({{ showcase_image.url }});">
+{% else %}
+<div class="modular-row showcase">
+{% endif %}
+
+
+{# added this bit to inject the TL #}
+<video autoplay="" loop="" muted="" class="fullvideo">
+				<source src="https://d32ujqjov16ho0.cloudfront.net/direct_uploads/1473692861_Skyline.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+			</video>
+
+    {{ content }}
+
+    {% for button in page.header.buttons %}
+        <a class="button{% if button.primary %} primary{% endif %}" href="{{ button.url }}">{{ button.text }}</a>
+    {% endfor %}
+
+</div>
